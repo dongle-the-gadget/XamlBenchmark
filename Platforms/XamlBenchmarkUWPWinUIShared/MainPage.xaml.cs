@@ -1,18 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
+#if WINDOWS_UWP
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.DataTransfer;
+#else
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Controls;
+#endif
 
 using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Xaml;
 
 using GraphicsTester.Scenarios;
 
-namespace XamlBenchmarkUWP
+namespace XamlBenchmark
 {
     public sealed partial class MainPage : Page
     {
@@ -66,30 +69,6 @@ namespace XamlBenchmarkUWP
             }
         }
 
-        private void AddToClipboard()
-        {
-            DataPackageView dataPkgView = Clipboard.GetContent();
-
-            if (dataPkgView.Contains(StandardDataFormats.Text))
-            {
-                Task<string> task = dataPkgView.GetTextAsync().AsTask();
-                try { task.RunSynchronously(); } catch (InvalidOperationException) { }
-                string fullResult = task.Result;
-                dataPkgView.ReportOperationCompleted(DataPackageOperation.Copy);
-
-                string testResult = $"(  UWP  ) Elapsed: {Elapsed.Text}, Passes: {Passes.Text}";
-
-                var dataPkg = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-
-                if (string.IsNullOrEmpty(fullResult))
-                    dataPkg.SetText($"{testResult}\n");
-                else
-                    dataPkg.SetText($"{fullResult}\n{testResult}\n");
-
-                Clipboard.SetContent(dataPkg);
-            }
-        }
-
         private void OnRendering(object sender, object e)
         {
             if (testIncrement != -1)
@@ -121,7 +100,6 @@ namespace XamlBenchmarkUWP
                     Passes.Text = $"{GlobalVariables.TotalPasses}";
 
                     testIncrement = -1;
-                    AddToClipboard();
                 }
             }
         }

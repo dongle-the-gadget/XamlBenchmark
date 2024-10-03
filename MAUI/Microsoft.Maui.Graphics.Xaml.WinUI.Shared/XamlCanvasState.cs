@@ -1,7 +1,5 @@
 using System.Numerics;
 
-using Microsoft.UI.Text;
-using Microsoft.UI.Xaml.Media;
 using Windows.UI.Text;
 
 namespace Microsoft.Maui.Graphics.Xaml
@@ -81,7 +79,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 						};
 
 						foreach (var stop in linearGradientPaint.GradientStops)
-							brush.GradientStops.Add(new Microsoft.UI.Xaml.Media.GradientStop() { Color = stop.Color.AsColor(), Offset = stop.Offset });
+							brush.GradientStops.Add(new PlatformXaml.Media.GradientStop() { Color = stop.Color.AsColor(), Offset = stop.Offset });
 
 						return brush;
 					}
@@ -112,7 +110,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 						return new SolidColorBrush(gradientPaint.BlendStartAndEndColors().AsColor());
 				}
 
-				return new SolidColorBrush(Microsoft.UI.Colors.White);
+				return new SolidColorBrush(White);
 			}
 		}
 
@@ -229,12 +227,12 @@ namespace Microsoft.Maui.Graphics.Xaml
 			set => _font = value;
 		}
 
-		public global::Microsoft.UI.Xaml.Media.FontFamily FontFamily
+		public FontFamily FontFamily
 		{
 			get
 			{
 				var style = Fonts.CurrentService.GetFontStyleById(_font ?? "Arial");
-				return new global::Microsoft.UI.Xaml.Media.FontFamily(style != null ? style.FontFamily.Name: "Arial");
+				return new FontFamily(style != null ? style.FontFamily.Name: "Arial");
 			}
 		}
 

@@ -2,8 +2,8 @@
     x:Class="XamlBenchmarkUWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    RequestedTheme="Light"
-    xmlns:local="using:XamlBenchmarkUWP">
+    xmlns:local="using:XamlBenchmarkUWP"
+    RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

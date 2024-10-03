@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Numerics;
 
 using Microsoft.Maui.Graphics.Text;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Shapes;
 
 namespace Microsoft.Maui.Graphics.Xaml
 {
@@ -164,7 +160,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 				case ItemType.DrawRoundedRectangle:
 				case ItemType.FillRectangle:
 				case ItemType.FillRoundedRectangle:
-					return new global::Microsoft.UI.Xaml.Shapes.Rectangle();
+					return new PlatformXaml.Shapes.Rectangle();
 				case ItemType.DrawEllipse:
 				case ItemType.FillEllipse:
 					return new Ellipse();
@@ -190,7 +186,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 					return border;
 			}
 
-			return new global::Microsoft.UI.Xaml.Shapes.Rectangle();
+            return new PlatformXaml.Shapes.Rectangle();
 		}
 
 		private void CreateFillRect(float x, float y, float width, float height)
@@ -308,7 +304,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 		protected override void NativeDrawRoundedRectangle(float x, float y, float width, float height, float cornerRadius)
 		{
 			var item = GetOrCreateItem(ItemType.DrawRoundedRectangle);
-			var element = (global::Microsoft.UI.Xaml.Shapes.Rectangle)item.Element;
+			var element = (PlatformXaml.Shapes.Rectangle)item.Element;
 
 			CreateStrokeRoundedRect(x, y, width, height, cornerRadius);
 
@@ -333,7 +329,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 		protected override void NativeDrawRectangle(float x, float y, float width, float height)
 		{
 			var item = GetOrCreateItem(ItemType.DrawRectangle);
-			var element = (global::Microsoft.UI.Xaml.Shapes.Rectangle)item.Element;
+			var element = (PlatformXaml.Shapes.Rectangle)item.Element;
 
 			CreateStrokeRect(x,y,width,height);
 
@@ -539,13 +535,13 @@ namespace Microsoft.Maui.Graphics.Xaml
 			switch (verticalAlignment)
 			{
 				case VerticalAlignment.Top:
-					block.VerticalAlignment = global::Microsoft.UI.Xaml.VerticalAlignment.Top;
+					block.VerticalAlignment = PlatformXaml.VerticalAlignment.Top;
 					break;
 				case VerticalAlignment.Center:
-					block.VerticalAlignment = global::Microsoft.UI.Xaml.VerticalAlignment.Center;
+					block.VerticalAlignment = PlatformXaml.VerticalAlignment.Center;
 					break;
 				case VerticalAlignment.Bottom:
-					block.VerticalAlignment = global::Microsoft.UI.Xaml.VerticalAlignment.Bottom;
+					block.VerticalAlignment = PlatformXaml.VerticalAlignment.Bottom;
 					break;
 			}
 
@@ -621,7 +617,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 		public override void FillRoundedRectangle(float x, float y, float width, float height, float cornerRadius)
 		{
 			var item = GetOrCreateItem(ItemType.FillRoundedRectangle);
-			var element = (global::Microsoft.UI.Xaml.Shapes.Rectangle)item.Element;
+			var element = (PlatformXaml.Shapes.Rectangle)item.Element;
 
 			CreateFillRect(x, y, width, height);
 
@@ -652,7 +648,7 @@ namespace Microsoft.Maui.Graphics.Xaml
 		public override void FillRectangle(float x, float y, float width, float height)
 		{
 			var item = GetOrCreateItem(ItemType.FillRectangle);
-			var element = (global::Microsoft.UI.Xaml.Shapes.Rectangle)item.Element;
+			var element = (PlatformXaml.Shapes.Rectangle)item.Element;
 
 			CreateFillRect(x, y, width, height);
 

@@ -2,8 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
-using Windows.UI.Input;
-using Windows.UI.Xaml.Media;
 
 namespace Microsoft.Maui.Graphics.Xaml
 {
